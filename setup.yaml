@@ -1,0 +1,12 @@
+- hosts: localhost
+  pre_tasks:
+  - name: apt update && apt upgrade
+    become: true
+    apt:
+      update_cache: true
+      upgrade: true
+  tasks:
+    - name: install apt packages
+      become: true
+      apt:
+        name: [ "git", "neovim", "stow" ]
