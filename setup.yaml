@@ -13,18 +13,25 @@
     - name: create .ssh directory
       file:
         dest: "/home/user/.ssh"
-        mode: 0666
+        mode: 0700
         state: directory
     - name: copy public ssh key
       copy:
         src: "./ssh/id.pub"
         dest: "/home/user/.ssh/id.pub"
-        mode: 0666
+        mode: 0600
     - name: copy private ssh key
       copy:
         src: "./ssh/id"
         dest: "/home/user/.ssh/id"
-        mode: 0666
+        mode: 0644
+    - name: register ssh key
+      authorized_key:
+        user: "{{ lookup('env', 'USER') }}"
+        state: present
+        key: "/home/user/.ssh/id.pub"
+      with_fileglob:
+      - "{{ lookup('env', 'HOME') }}/.ssh/*.pub"
     - name: copy passwords
       copy:
         src: "./Passwords.kdbx"
