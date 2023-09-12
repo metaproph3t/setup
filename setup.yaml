@@ -19,19 +19,12 @@
       copy:
         src: "./ssh/id.pub"
         dest: "/home/user/.ssh/id.pub"
-        mode: 0600
+        mode: 0644
     - name: copy private ssh key
       copy:
         src: "./ssh/id"
         dest: "/home/user/.ssh/id"
-        mode: 0644
-    - name: register ssh key
-      authorized_key:
-        user: "{{ lookup('env', 'USER') }}"
-        state: present
-        key: "/home/user/.ssh/id.pub"
-      with_fileglob:
-      - "{{ lookup('env', 'HOME') }}/.ssh/*.pub"
+        mode: 0600
     - name: copy passwords
       copy:
         src: "./Passwords.kdbx"
