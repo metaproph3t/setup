@@ -1,1 +1,2 @@
-sudo env "PATH=$PATH" ansible-playbook setup.yaml
+sudo ~/.local/bin/ansible-playbook setup.yaml --ask-vault-password
+
