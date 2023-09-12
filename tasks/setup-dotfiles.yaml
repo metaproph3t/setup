@@ -1,0 +1,11 @@
+- name: clone .dotfiles
+  git:
+    repo: "git@github.com:metaproph3t/.dotfiles.git"
+    dest: "/home/user/.dotfiles"
+    recursive: true
+    update: yes
+    version: main
+- name: remove zshrc
+  shell: rm /home/user/.zshrc
+- name: stow dotfiles
+  shell: cd /home/user/.dotfiles && stow nvim git zsh --dotfiles

@@ -1,0 +1,10 @@
+- name: copy GPG public key
+  copy:
+    src: "./gpg/public-key"
+    dest: "/home/user/.gnupg/public-key"
+- name: copy GPG private key
+  copy:
+    src: "./gpg/private-key"
+    dest: "/home/user/.gnupg/private-key"
+- name: import GPG private key
+  shell: gpg --import /home/user/.gnupg/private-key

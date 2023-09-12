@@ -9,44 +9,12 @@
     - name: install apt packages
       become: true
       apt:
-        name: [ "git", "neovim", "stow" ]
-    - name: create .ssh directory
-      file:
-        dest: "/home/user/.ssh"
-        mode: 0700
-        state: directory
-    - name: copy public ssh key
-      copy:
-        src: "./ssh/id.pub"
-        dest: "/home/user/.ssh/id.pub"
-        mode: 0644
-    - name: copy private ssh key
-      copy:
-        src: "./ssh/id"
-        dest: "/home/user/.ssh/id"
-        mode: 0600
+        name: [ "git", "neovim", "stow", "flatpak" ]
     - name: copy passwords
       copy:
         src: "./Passwords.kdbx"
         dest: "/home/user/Passwords.kdbx"
-    - name: copy GPG public key
-      copy:
-        src: "./gpg/public-key"
-        dest: "/home/user/.gnupg/public-key"
-    - name: copy GPG private key
-      copy:
-        src: "./gpg/private-key"
-        dest: "/home/user/.gnupg/private-key"
-    - name: import GPG private key
-      shell: gpg --import /home/user/.gnupg/private-key
-    - name: clone .dotfiles
-      git:
-        repo: "https://github.com/metaproph3t/.dotfiles.git"
-        dest: "/home/user/.dotfiles"
-        recursive: true
-        update: yes
-        version: main
-    - name: remove zshrc
-      shell: rm /home/user/.zshrc
-    - name: stow dotfiles
-      shell: cd /home/user/.dotfiles && stow nvim git zsh --dotfiles
+    - include: tasks/install-ferdium.yaml
+    - include: tasks/setup-ssh.yaml
+    - include: tasks/setup-gpg.yaml
+    - include: tasks/setup-dotfiles.yaml
