@@ -20,3 +20,15 @@
     - include: tasks/setup-dotfiles.yaml
     - include: tasks/install-rust.yaml
     - include: tasks/install-solana.yaml
+    - name: install nvm
+      shell: >
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | sh
+        creates=/home/user/.nvm/nvm.sh
+    - name: Install node LTS
+      shell: >
+        /bin/bash -c "source ~/.nvm/nvm.sh && nvm install --lts"
+        creates=/home/user/.nvm/alias
+    - name: install yarn
+      npm:
+        name: yarn
+        global: yes
