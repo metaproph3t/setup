@@ -1,0 +1,8 @@
+- name: check if Solana is installed
+  shell: command -v solana
+  register: solana_exists
+  ignore_errors: yes
+
+- name: install Solana
+  when: solana_exists is failed
+  shell: sh -c "$(curl -sSfL https://release.solana.com/stable/install)"

@@ -14,16 +14,9 @@
       copy:
         src: "./Passwords.kdbx"
         dest: "/home/user/Passwords.kdbx"
-    - name: check if Solana is installed
-      shell: command -v solana
-      register: solana_exists
-      ignore_errors: yes
-
-    - name: install Solana
-      when: solana_exists is failed
-      shell: sh -c "$(curl -sSfL https://release.solana.com/stable/install)"
     - include: tasks/install-ferdium.yaml
     - include: tasks/setup-ssh.yaml
     - include: tasks/setup-gpg.yaml
     - include: tasks/setup-dotfiles.yaml
     - include: tasks/install-rust.yaml
+    - include: tasks/install-solana.yaml
