@@ -18,3 +18,6 @@
   shell: /tmp/sh.rustup.rs -y
   tags:
     - rust
+
+- name: install stable
+  shell: rustup default stable

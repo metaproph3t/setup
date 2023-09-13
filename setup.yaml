@@ -32,3 +32,5 @@
       npm:
         name: yarn
         global: yes
+    - name: install just
+      shell: cargo install just
