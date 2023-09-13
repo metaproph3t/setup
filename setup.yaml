@@ -34,3 +34,8 @@
         global: yes
     - name: install just
       shell: cargo install just
+    - name: install avm
+      shell: cargo install --git https://github.com/project-serum/anchor avm --locked
+    - name: install anchor
+      shell: avm install latest && avm use latest
+
