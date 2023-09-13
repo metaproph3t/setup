@@ -9,7 +9,7 @@
     - name: install apt packages
       become: true
       apt:
-        name: [ "git", "neovim", "stow", "flatpak", "cloc", "imagemagick" ]
+        name: [ "git", "neovim", "stow", "flatpak", "cloc", "imagemagick", "entr" ]
     - name: copy passwords
       copy:
         src: "./Passwords.kdbx"
