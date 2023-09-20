@@ -6,6 +6,8 @@
     update: yes
     version: main
 - name: remove zshrc
-  shell: rm /home/user/.zshrc
+  file:
+    path: /home/user/.zshrc
+    state: absent
 - name: stow dotfiles
   shell: cd /home/user/.dotfiles && stow nvim git zsh --dotfiles
