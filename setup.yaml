@@ -9,7 +9,7 @@
     - name: install apt packages
       become: true
       apt:
-        name: [ "git", "neovim", "stow", "flatpak", "cloc", "imagemagick", "entr", "libssl-dev", "zsh" ]
+        name: [ "git", "neovim", "stow", "flatpak", "cloc", "imagemagick", "entr", "libssl-dev", "zsh", "pkg-config" ]
     - name: change shell
       user: name=user shell=/usr/bin/zsh
     - name: install libssl1.1
