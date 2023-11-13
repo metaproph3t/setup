@@ -13,6 +13,11 @@
     src: "./ssh/id"
     dest: "/home/user/.ssh/id_rsa"
     mode: 0600
+- name: copy known hosts
+  copy:
+    src: "./ssh/known_hosts"
+    dest: "/home/user/.ssh/known_hosts"
+    mode: 0644
 - name: add key
   shell: |
     eval "$(ssh-agent)"
