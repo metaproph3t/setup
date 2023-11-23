@@ -9,7 +9,7 @@
     - name: install apt packages
       become: true
       apt:
-        name: [ "git", "neovim", "stow", "flatpak", "cloc", "imagemagick", "entr", "libssl-dev", "zsh", "pkg-config", "build-essential", "libudev-dev" ]
+        name: [ "git", "neovim", "stow", "flatpak", "cloc", "imagemagick", "entr", "libssl-dev", "zsh", "pkg-config", "build-essential", "libudev-dev", "simplescreenrecorder", "i3" ]
     - name: change shell
       become: true
       command: usermod --shell /bin/zsh user
