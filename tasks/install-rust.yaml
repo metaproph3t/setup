@@ -19,5 +19,7 @@
   tags:
     - rust
 
+- name: source cargo
+  shell: . /home/user/.cargo/env
 - name: install stable
-  shell: rustup default stable
+  shell: rustup default 1.79.0
