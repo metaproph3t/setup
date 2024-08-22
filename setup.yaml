@@ -9,27 +9,27 @@
     - name: install apt packages
       become: true
       apt:
-        name: [ "git", "neovim", "stow", "flatpak", "cloc", "imagemagick", "entr", "libssl-dev", "zsh", "pkg-config", "build-essential", "libudev-dev", "simplescreenrecorder", "i3" ]
+        name: [ "git", "neovim", "stow", "flatpak", "cloc", "imagemagick", "entr", "libssl-dev", "zsh", "pkg-config", "build-essential", "libudev-dev", "simplescreenrecorder", "i3", "curl" ]
     - name: change shell
       become: true
       command: usermod --shell /bin/zsh user
-    - name: install libssl1.1
-      become: true
-      shell: wget http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.20_amd64.deb &&
-        dpkg -i libssl1.1_1.1.1f-1ubuntu2.20_amd64.deb
+        #    - name: install libssl1.1
+        #      become: true
+        #      shell: wget http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.20_amd64.deb &&
+        #        dpkg -i libssl1.1_1.1.1f-1ubuntu2.20_amd64.deb
     - name: copy passwords
       copy:
         src: "./Passwords.kdbx"
         dest: "/home/user/Passwords.kdbx"
           #    - include: tasks/install-ferdium.yaml
-    - include: tasks/setup-ssh.yaml
-    - include: tasks/setup-gpg.yaml
-    - include: tasks/setup-dotfiles.yaml
-    - include: tasks/install-rust.yaml
-    - include: tasks/install-solana.yaml
+    - include_tasks: tasks/setup-ssh.yaml
+    - include_tasks: tasks/setup-gpg.yaml
+    - include_tasks: tasks/setup-dotfiles.yaml
+    - include_tasks: tasks/install-rust.yaml
+    - include_tasks: tasks/install-solana.yaml
     - name: install nvm
       shell: >
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
         creates=/home/user/.nvm/nvm.sh
     - name: Install node LTS
       shell: >
@@ -44,5 +44,5 @@
     - name: install avm
       shell: cargo install --git https://github.com/project-serum/anchor avm --locked
     - name: install anchor
-      shell: avm install latest && avm use latest
+      shell: avm install 0.29.0 && avm use 0.29.0
 
