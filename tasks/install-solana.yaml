@@ -5,4 +5,4 @@
 
 - name: install Solana
   when: solana_exists is failed
-  shell: sh -c "$(curl -sSfL https://release.solana.com/stable/install)"
+  shell: sh -c "$(curl -sSfL https://release.solana.com/v1.17.16/install)"
