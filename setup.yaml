@@ -27,6 +27,10 @@
     - include_tasks: tasks/setup-dotfiles.yaml
     - include_tasks: tasks/install-rust.yaml
     - include_tasks: tasks/install-solana.yaml
+    - name: copy solana private key
+      copy:
+        src: "./solana/id.json"
+        dest: "/home/user/.config/solana/id.json"
     - name: install nvm
       shell: >
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
@@ -39,8 +43,8 @@
       npm:
         name: yarn
         global: yes
-    - name: install just
-      shell: cargo install just
+          #- name: install just
+          #  shell: cargo install just
     - name: install avm
       shell: cargo install --git https://github.com/project-serum/anchor avm --locked
     - name: install anchor
